@@ -1,58 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React from "react";
+import Navbar from "./sections/Navbar";
+import Wrapper from "./sections/Wrapper";
+import Footer from "./sections/Footer";
+import Background from "./components/Background";
+import "./scss/index.scss";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Search from "./pages/Search";
+import MyList from "./pages/MyList";
+import About from "./pages/About";
+import Compare from "./pages/Compare";
+import Pokemon from "./pages/Pokemon";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className="main-container">
+      <Background />
+      <BrowserRouter>
+        <div className="app">
+          <Navbar />
+          <Routes>
+            <Route element={<Search/>} path="/search" />
+            <Route element={<MyList/>} path="/list" />
+            <Route element={<About/>} path="/about" />
+            <Route element={<Compare/>} path="/compare" />
+            <Route element={<Pokemon/>} path="/pokemon/:id" />
+            <Route element={<Navigate to="/pokemon/1" />} path="*" />
+          </Routes>
+          <Footer />
+        </div>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
