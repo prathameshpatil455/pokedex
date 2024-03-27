@@ -12,12 +12,23 @@ import Pokemon from "./pages/Pokemon";
 import { ToastContainer, ToastOptions, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { clearToasts } from "./app/slices/AppSlice";
+import { clearToasts, setUserStatus } from "./app/slices/AppSlice";
+import { onAuthStateChanged } from "firebase/auth";
+import { firebaseAuth } from "./utils/FirebaseConfig";
+import { current } from "@reduxjs/toolkit";
 
 const App = () => {
 
   const { toasts } = useAppSelector(({app}) => app);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    onAuthStateChanged(firebaseAuth, (currentUser) => {
+      if(currentUser) {
+        dispatch(setUserStatus({email:currentUser.email}))
+      }
+    })
+  }, []);
 
   useEffect(() => {
       if(toasts.length) {
