@@ -8,10 +8,17 @@ function Description() {
     ({ pokemon: { currentPokemon } }) => currentPokemon
   );
   return (
-    <>
-      <Info data={pokemonData} />
-      {pokemonData && <PokemonContainer image={pokemonData.image} />}
-    </>
+    <div>
+      {
+        pokemonData && (
+          <>
+            <Info data={pokemonData} />
+            <PokemonContainer image={pokemonData?.image!} />
+          </>
+        )
+      }
+      
+    </div>
   );
 }
 

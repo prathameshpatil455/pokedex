@@ -1,4 +1,5 @@
 export interface AppTypeInitialState {
+    isLoading: boolean;
     toasts: string[];
     userInfo:undefined | {email:string};
     currentPokemonTab: string;
@@ -11,8 +12,10 @@ export interface currentPokemonType {
     image:string;
     stats:pokemonStatsType[];
     encounters:string;
-    evolution:{level:number; pokemon: {name:string, url:string}};
-    pokemonAbilites:{abilities: string[]; moves:string[]};
+    evolution:{
+      map(arg0: ({ pokemon }: { pokemon: genericPokemonType; }) => genericPokemonType): genericPokemonType[];level:number; pokemon: {name:string, url:string}
+}[];
+    pokemonAbilities:{abilities: string[]; moves:string[]};
     evolutionLevel: number;
 }
 
@@ -22,7 +25,6 @@ export interface PokemonTypeInitialState {
     compareQueue: generatedPokemonType[];
     userPokemons: userPokemonsType[];
     currentPokemon: currentPokemonType | undefined;
-
 }
 
 export interface genericPokemonType {

@@ -3,13 +3,13 @@
 import { useCallback, useEffect, useState } from "react";
 import Wrapper from "../sections/Wrapper";
 import { useParams } from "react-router-dom";
-import { defaultImages, images } from "../utils";
+import { defaultImages, images } from "../utils/getPokemonImages";
 import { extractColors } from "extract-colors";
 import axios from "axios";
-import Evolution from "./Pokemon/Evolution";
-import Locations from "./Pokemon/Locations";
-import CapableMoves from "./Pokemon/CapableMoves";
-import Description from "./Pokemon/Description";
+import Evolution from "./PokemonsPages/Evolution";
+import Locations from "./PokemonsPages/Location";
+import CapableMoves from "./PokemonsPages/CapableMoves";
+import Description from "./PokemonsPages/Description";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setCurrentPokemon } from "../app/slices/PokemonSlice";
 import { setPokemonTab } from "../app/slices/AppSlice";
@@ -93,7 +93,7 @@ function Pokemon() {
         moves: data.moves.map(({ move }) => move.name),
       };
 
-      const encounters = [];
+      const encounters: string[] = [];
       const evolution = getEvolutionData(evolutionData.chain);
       let evolutionLevel;
       evolutionLevel = evolution.find(

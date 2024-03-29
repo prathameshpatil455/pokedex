@@ -3,6 +3,7 @@ import { AppTypeInitialState } from "../../utils/Types";
 import { pokemonTabs } from "../../utils/Constants";
 
 const initialState: AppTypeInitialState = {
+    isLoading: true,
     toasts: [],
     userInfo: undefined,
     currentPokemonTab: pokemonTabs.description,

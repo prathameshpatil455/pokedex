@@ -15,7 +15,6 @@ import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { clearToasts, setUserStatus } from "./app/slices/AppSlice";
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "./utils/FirebaseConfig";
-import { current } from "@reduxjs/toolkit";
 
 const App = () => {
 
@@ -28,7 +27,7 @@ const App = () => {
         dispatch(setUserStatus({email:currentUser.email}))
       }
     })
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
       if(toasts.length) {
